@@ -7,13 +7,20 @@ import (
 	"errors"
 	"fmt"
 	"net/url"
-	"slices"
 	"strings"
 
 	"github.com/libsql/libsql-client-go/libsql/internal/http"
 	"github.com/libsql/libsql-client-go/libsql/internal/ws"
+	"golang.org/x/exp/slices"
 )
-
+func contains(s []string, item string) bool {
+	for idx := range s {
+		if s[idx] == item {
+			return true
+		}
+	}
+	return false
+}
 type config struct {
 	authToken *string
 	tls       *bool
@@ -78,7 +85,7 @@ func (c config) connector(dbPath string) (driver.Connector, error) {
 		expectedDrivers := []string{"sqlite", "sqlite3"}
 		presentDrivers := sql.Drivers()
 		for _, expectedDriver := range expectedDrivers {
-			if slices.Contains(presentDrivers, expectedDriver) {
+			if contains(presentDrivers, expectedDriver) {
 				db, err := sql.Open(expectedDriver, dbPath)
 				if err != nil {
 					return nil, err
@@ -155,6 +162,18 @@ func (c config) connector(dbPath string) (driver.Connector, error) {
 	return nil, fmt.Errorf("unsupported URL scheme: %s\nThis driver supports only URLs that start with libsql://, file://, https://, http://, wss:// and ws://", u.Scheme)
 }
 
+func JoinErrors(errs []error) error {
+	if len(errs) == 0 {
+		return nil
+	}
+
+	var errMsgs []string
+	for _, err := range errs {
+		errMsgs = append(errMsgs, err.Error())
+	}
+	return errors.New(strings.Join(errMsgs, "; "))
+}
+
 func NewConnector(dbPath string, opts ...Option) (driver.Connector, error) {
 	var config config
 	errs := make([]error, 0, len(opts))
@@ -164,7 +183,7 @@ func NewConnector(dbPath string, opts ...Option) (driver.Connector, error) {
 		}
 	}
 	if len(errs) > 0 {
-		return nil, errors.Join(errs...)
+		return nil, JoinErrors(errs)
 	}
 	return config.connector(dbPath)
 }
