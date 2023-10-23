@@ -6,9 +6,10 @@ import (
 	"database/sql"
 	"database/sql/driver"
 	"errors"
-	"github.com/libsql/libsql-client-go/libsql"
 	"os"
 	"testing"
+
+	"github.com/libsql/libsql-client-go/libsql"
 
 	_ "github.com/libsql/libsql-client-go/libsql"
 )
