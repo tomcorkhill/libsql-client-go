@@ -9,9 +9,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/libsql/libsql-client-go/libsql"
+	"github.com/tomcorkhill/libsql-client-go/libsql"
 
-	_ "github.com/libsql/libsql-client-go/libsql"
+	_ "github.com/tomcorkhill/libsql-client-go/libsql"
 )
 
 // setupDB sets up a test database by connecting to libsql server and creates a `test` table

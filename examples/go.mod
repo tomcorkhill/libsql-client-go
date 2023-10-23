@@ -1,13 +1,13 @@
-module github.com/libsql/libsql-client-go/examples
+module github.com/tomcorkhill/libsql-client-go/examples
 
 go 1.21
 
 toolchain go1.21.0
 
-replace github.com/libsql/libsql-client-go => ../
+replace github.com/tomcorkhill/libsql-client-go => ../
 
 require (
-	github.com/libsql/libsql-client-go v0.0.0-20230426130049-e6ddf604c6c5
+	github.com/tomcorkhill/libsql-client-go v0.0.0-20230426130049-e6ddf604c6c5
 	modernc.org/sqlite v1.22.0
 )
 

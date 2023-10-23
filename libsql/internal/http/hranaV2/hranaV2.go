@@ -8,11 +8,12 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/libsql/libsql-client-go/libsql/internal/hrana"
-	"github.com/libsql/libsql-client-go/libsql/internal/http/shared"
 	"io"
 	"net/http"
 	"time"
+
+	"github.com/tomcorkhill/libsql-client-go/libsql/internal/hrana"
+	"github.com/tomcorkhill/libsql-client-go/libsql/internal/http/shared"
 )
 
 func Connect(url, jwt, host string) driver.Conn {

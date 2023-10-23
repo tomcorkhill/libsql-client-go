@@ -9,8 +9,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/libsql/libsql-client-go/libsql/internal/http"
-	"github.com/libsql/libsql-client-go/libsql/internal/ws"
+	"github.com/tomcorkhill/libsql-client-go/libsql/internal/http"
+	"github.com/tomcorkhill/libsql-client-go/libsql/internal/ws"
 	"golang.org/x/exp/slices"
 )
 func contains(s []string, item string) bool {

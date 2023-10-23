@@ -7,7 +7,7 @@ import (
 	"os"
 	"sync"
 
-	_ "github.com/libsql/libsql-client-go/libsql"
+	_ "github.com/tomcorkhill/libsql-client-go/libsql"
 	_ "modernc.org/sqlite"
 )
 
